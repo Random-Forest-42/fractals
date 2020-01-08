@@ -19,12 +19,13 @@ motivo = [complex(0,0), complex(0, 0.25), complex(0.5, 0.25), complex(0.5, -0.25
 # motivo = [complex(0,0), complex(0, 0.2), complex(0.5, 0.2), complex(0.5, -0.2), complex(1,-0.2), complex(1,0)]
 # motivo = [complex(0, 0.25), complex(0.5, 0.25), complex(0.5, -0.25), complex(1,-0.25)]
 
-flag_inverse = False
+flag_espejo_x = False
+flag_espejo_y = True
 
-def convert_to_plot(a, flag_inverse=False):
+def convert_to_plot(a, flag_espejo_x=False, flag_espejo_y=False):
     x = [z.real for z in a]
     y = [z.imag for z in a]
-    if flag_inverse:
+    if flag_espejo_x:
         # para que pinte la version especular
         x2 = [z.real for z in a]
         x2.reverse()
@@ -32,6 +33,14 @@ def convert_to_plot(a, flag_inverse=False):
         y2.reverse()
         x += x2
         y += y2
+    if flag_espejo_y:
+        # para que pinte la version especular
+        x3 = [-z.real for z in a]
+        x.reverse()
+        y3 = [z.imag for z in a]
+        y.reverse()
+        x += x3
+        y += y3
     plt.plot(x,y)
     plt.show()
 
@@ -56,5 +65,5 @@ for i in range(iteraciones):
         next_point_list += get_puntos_intermedios(p,point_list[j+1])
         # el siguiente
         next_point_list.append(point_list[j+1])
-    convert_to_plot(next_point_list, flag_inverse)
+    convert_to_plot(next_point_list, flag_espejo_x, flag_espejo_y)
     point_list = next_point_list
