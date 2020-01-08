@@ -4,11 +4,21 @@ import copy
 
 iteraciones = 6
 
-motivo = [complex(0,0), complex(0.5, 0.5), complex(1,0)]
+# motivo = [complex(0,0), complex(0.5, 0.5), complex(1,0)]
 # motivo = [complex(0,0), complex(0.5, -0.5), complex(1,0)]
 motivo = [complex(0,0), complex(0.25, 0), complex(0.25, 0.25), complex(0.75, 0.25), complex(0.75, 0), complex(1,0)]
-motivo = [complex(0,0), complex(0.25, 0), complex(0.25, 0.25), complex(0.5,0.5), complex(0.75, 0.25), complex(0.75, 0), complex(1,0)]
+# motivo = [complex(0,0), complex(0.25, 0), complex(0.25, 0.25), complex(0.5,0.5), complex(0.75, 0.25), complex(0.75, 0), complex(1,0)]
+# motivo = [complex(0,0), complex(0.25, 0), complex(0.25, 0.25), complex(0.75, 0.25), complex(0.75, 0), complex(1,0)]
+motivo = [complex(0,0), complex(0.5, 0.5), complex(1,0), complex(0.5,-0.5), complex(0,0)]
+# PICO
+motivo = [complex(0,0), complex(0.25, 0), complex(0.5, 0.4), complex(0.75, 0), complex(1,0)]
+motivo = [complex(0,0), complex(0.25, 0), complex(0.5, 0.4), complex(0.75, 0), complex(1,0), complex(0.5,-0.4), complex(0,0)]
+motivo = [complex(0,0), complex(0.4, 0), complex(0.5, 0.45), complex(0.6, 0), complex(1,0)]
+# #HAAR
+# motivo = [complex(0,0), complex(0, 0.25), complex(0.5, 0.25), complex(0.5, -0.25), complex(1,-0.25), complex(1,0)]
+# motivo = [complex(0, 0.25), complex(0.5, 0.25), complex(0.5, -0.25), complex(1,-0.25)]
 
+flag_inverse = True
 
 def convert_to_plot(a, flag_inverse=False):
     x = [z.real for z in a]
@@ -45,5 +55,5 @@ for i in range(iteraciones):
         next_point_list += get_puntos_intermedios(p,point_list[j+1])
         # el siguiente
         next_point_list.append(point_list[j+1])
-    convert_to_plot(next_point_list)
+    convert_to_plot(next_point_list, flag_inverse)
     point_list = next_point_list
