@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import copy
 
-iteraciones = 6
+iteraciones = 4
 
 # motivo = [complex(0,0), complex(0.5, 0.5), complex(1,0)]
 # motivo = [complex(0,0), complex(0.5, -0.5), complex(1,0)]
@@ -18,9 +18,11 @@ motivo = [complex(0,0), complex(0.4, 0), complex(0.5, 0.45), complex(0.6, 0), co
 motivo = [complex(0,0), complex(0, 0.25), complex(0.5, 0.25), complex(0.5, -0.25), complex(1,-0.25), complex(1,0)]
 # motivo = [complex(0,0), complex(0, 0.2), complex(0.5, 0.2), complex(0.5, -0.2), complex(1,-0.2), complex(1,0)]
 # motivo = [complex(0, 0.25), complex(0.5, 0.25), complex(0.5, -0.25), complex(1,-0.25)]
+# 2 PICOS
+motivo = [complex(0,0), complex(0.1,0), complex(0.1,0.1), complex(0.2,0.1), complex(0.2,0), complex(0.6,0), complex(0.6,0.2), complex(0.8,0.2), complex(0.8,0), complex(1,0)]
 
 flag_espejo_x = False
-flag_espejo_y = True
+flag_espejo_y = False
 
 def convert_to_plot(a, flag_espejo_x=False, flag_espejo_y=False):
     x = [z.real for z in a]
@@ -42,6 +44,7 @@ def convert_to_plot(a, flag_espejo_x=False, flag_espejo_y=False):
         x += x3
         y += y3
     plt.plot(x,y)
+    plt.axis('equal')
     plt.show()
 
 convert_to_plot(motivo)
