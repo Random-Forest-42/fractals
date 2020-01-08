@@ -15,10 +15,11 @@ motivo = [complex(0,0), complex(0.25, 0), complex(0.5, 0.4), complex(0.75, 0), c
 motivo = [complex(0,0), complex(0.25, 0), complex(0.5, 0.4), complex(0.75, 0), complex(1,0), complex(0.5,-0.4), complex(0,0)]
 motivo = [complex(0,0), complex(0.4, 0), complex(0.5, 0.45), complex(0.6, 0), complex(1,0)]
 # #HAAR
-# motivo = [complex(0,0), complex(0, 0.25), complex(0.5, 0.25), complex(0.5, -0.25), complex(1,-0.25), complex(1,0)]
+motivo = [complex(0,0), complex(0, 0.25), complex(0.5, 0.25), complex(0.5, -0.25), complex(1,-0.25), complex(1,0)]
+# motivo = [complex(0,0), complex(0, 0.2), complex(0.5, 0.2), complex(0.5, -0.2), complex(1,-0.2), complex(1,0)]
 # motivo = [complex(0, 0.25), complex(0.5, 0.25), complex(0.5, -0.25), complex(1,-0.25)]
 
-flag_inverse = True
+flag_inverse = False
 
 def convert_to_plot(a, flag_inverse=False):
     x = [z.real for z in a]
