@@ -2,8 +2,12 @@ import matplotlib.pyplot as plt
 import numpy as np
 import copy
 
-iteraciones = 4
+### PARAMETROS GENERALES
+iteraciones = 5
+flag_espejo_x = False
+flag_espejo_y = False
 
+### MOTIVOS
 # motivo = [complex(0,0), complex(0.5, 0.5), complex(1,0)]
 # motivo = [complex(0,0), complex(0.5, -0.5), complex(1,0)]
 motivo = [complex(0,0), complex(0.25, 0), complex(0.25, 0.25), complex(0.75, 0.25), complex(0.75, 0), complex(1,0)]
@@ -21,8 +25,32 @@ motivo = [complex(0,0), complex(0, 0.25), complex(0.5, 0.25), complex(0.5, -0.25
 # 2 PICOS
 motivo = [complex(0,0), complex(0.1,0), complex(0.1,0.1), complex(0.2,0.1), complex(0.2,0), complex(0.6,0), complex(0.6,0.2), complex(0.8,0.2), complex(0.8,0), complex(1,0)]
 
-flag_espejo_x = False
-flag_espejo_y = False
+
+# MOVIMIENTOS
+r = np.sqrt(0.125)
+mov = [0.5, 0.5j, 0.2, -0.2j]
+mov = [0.5j, 0.5+0.2j, 0.5-0.2j]
+mov = [0.5j, r+r*1j, r-r*1j, -0.5j]
+
+def convert_movimientos(l, end_1=True, start_0=True):
+    '''dada una lista con movimientos, los convierte a motivo
+    asumimos que siempre empieza en 0,0 y termina en 1,0
+    ex: [0.5, 0.5j, 0.2, -0.2j]
+    --> [0j, (0.5+0j), (0.5+0.5j), (0.5+0.7j), (0.7+0.7j), (0.7+0.49999999999999994j), (1+0j)]
+    '''
+    last_point = 0
+    l_out = [last_point]
+    for m in l:
+        last_point = last_point + m
+        l_out.append(last_point)
+    if end_1:
+        l_out.append(1)
+    return l_out
+
+motivo = convert_movimientos(mov)
+
+
+
 
 def convert_to_plot(a, flag_espejo_x=False, flag_espejo_y=False):
     x = [z.real for z in a]
